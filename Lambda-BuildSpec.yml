@@ -1,0 +1,26 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - echo "Using Python 3.9 runtime..."
+  build:
+    commands:
+      - echo "Packaging index Lambda function..."
+      - cd lambda-functions/index
+      - zip -r ../../index.zip *
+      - aws s3 cp ../../index.zip s3://lambdas-bucket-10/index.zip
+      - echo "index Lambda function packaged and uploaded."
+
+      - echo "Packaging search Lambda function..."
+      - cd ../search
+      - zip -r ../../search.zip *
+      - aws s3 cp ../../search.zip s3://lambdas-bucket-10/search.zip
+      - echo "search Lambda function packaged and uploaded."
+  post_build:
+    commands:
+      - echo "Updating AWS Lambda functions..."
+      - aws lambda update-function-code --function-name LF1_A3 --s3-bucket lambdas-bucket-10 --s3-key index.zip
+      - aws lambda update-function-code --function-name LF2_A3 --s3-bucket lambdas-bucket-10 --s3-key search.zip
+      - echo "AWS Lambda functions updated successfully."
