@@ -5,7 +5,7 @@ from datetime import datetime
 from requests_aws4auth import AWS4Auth
 import base64
 
-# Initialize clients for S3 and Rekognition
+# Initialize clients for S3 and Rekognition - haha
 s3_client = boto3.client('s3')
 rekognition_client = boto3.client('rekognition')
 
