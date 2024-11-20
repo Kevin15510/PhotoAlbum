@@ -19,6 +19,8 @@ phases:
   post_build:
     commands:
       - echo "Updating original Lambda functions..."
+      - echo "Moving to root directory to locate ZIP files..."
+      - cd ../..
       - aws lambda update-function-code --function-name LF1_A3 --zip-file fileb://index.zip
       - aws lambda update-function-code --function-name LF2_A3 --zip-file fileb://search.zip
       - echo "Original Lambda functions updated successfully."
