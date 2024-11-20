@@ -3,5 +3,5 @@ phases:
   post_build:
     commands:
       - echo "Syncing frontend code to S3..."
-      - aws s3 sync frontend/ s3://frontend-bucket-10/
+      - aws s3 sync frontend/ s3://photo-album-website/
       - echo "Frontend code synced successfully."
