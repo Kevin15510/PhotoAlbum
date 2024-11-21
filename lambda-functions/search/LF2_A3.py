@@ -4,7 +4,7 @@ from opensearchpy import OpenSearch, RequestsHttpConnection
 from requests_aws4auth import AWS4Auth
 
 def lambda_handler(event, context):
-    #print("event: ", event) - search
+    #print("event: ", event)
     q = event.get('queryStringParameters', {}).get('q', '')
     if not q:
         #return {'statusCode': 200, 'body': json.dumps([])}
